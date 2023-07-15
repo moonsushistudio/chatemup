@@ -1,0 +1,3 @@
+C:\Users\Greg\source\repos\GregTest2\GregTest2\obj\Debug\GregTest2.njsproj.CoreCompileInputs.cache
+C:\Users\Greg\source\repos\GregTest2\GregTest2\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\Greg\source\repos\GregTest2\GregTest2\obj\Debug\GregTest2.njsproj.AssemblyReference.cache

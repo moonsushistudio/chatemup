@@ -1,0 +1,27 @@
+{
+    "dependencies": {
+        "axios": "^1.4.0",
+        "express": "^4.18.2",
+        "form-data": "^4.0.0",
+        "multer": "^1.4.5-lts.1",
+        "openai": "^4.0.0-beta.4"
+    },
+    "name": "gregtest2",
+    "version": "1.0.0",
+    "main": "index.js",
+    "keywords": [
+        "openai",
+        "whisper",
+        "express",
+        "axios",
+        "form-data",
+        "multer"
+    ],
+    "scripts": {
+        "start": "node index",
+        "dev": "node index"
+    },
+    "author": "Greg Brotzge",
+    "license": "ISC",
+    "description": ""
+}
