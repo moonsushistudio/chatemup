@@ -1,16 +1,18 @@
 const OpenAI = require('openai');
 const express = require('express');
+//require('dotenv').config();
 const multer = require('multer');
 const fs = require('fs');
+require('dotenv').config();
 const app = express();
 app.use(express.static('public'));
 const openAI = new OpenAI({
-    apiKey: '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'//process.env.OPENAI_API_KEY 
+    apiKey: process.env.OPEN_AI_KEY //process.env.OPENAI_API_KEY
 });
 //const upload = multer({ dest: 'uploads/' }); // store files in an 'uploads' folder
 const path = require('path');
 const sysMessage = [
-    { "role": "system", "content": "You are a translator. Please repeat everything said in Mandarin into English, and repeat everything said in English into Mandarin. If you don't understand, then don't say anything!" },
+    { "role": "system", "content": "You are a translator. Please repeat Mandarin in English, or English into Mandarin. If you don't understand, then don't say anything!" },
 ];
 let userMessages = [];
 let finalMessage = [];
@@ -67,5 +69,5 @@ app.post('/transcribe', upload.single('audio'), async (req, res) => {
     });
 });
 
-const port = 1337;
+const port = process.env.PORT || 1337;
 app.listen(port, () => console.log(`Server running on port ${port}`));
