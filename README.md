@@ -4,7 +4,7 @@ A real-time audio language translator app. Written in NodeJS. Powered by ChatGPT
 
 how to use:
 Just hit the green mic button and talk in your native language.
-Translation process will start if no audio is detected for 2 seconds. So roughly every sentence spoken will save an audio clip that is sent to whisper/GPT for translation.  
+Translation process will start when audio goes silent for 2 seconds. So roughly every sentence spoken will save an audio clip that is sent to whisper/GPT for translation.  
 The last four sentences spoken are sent to ChatGPT to help it understand context and improve translation.
 
 project setup:

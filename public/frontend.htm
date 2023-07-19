@@ -1,27 +1,21 @@
 <!DOCTYPE html>
-    <html>
+<html>
 <head>
 <style>
     .grid-container {
         display: grid;
         
-        grid-template-columns: 1fr 1fr; /* Creates two equally sized columns */
-        grid-column-gap: 7px; /* Creates a gap between columns */
-        align-items: stretch; /* Makes items stretch to take up the full height of the grid row */
+        grid-template-columns: 1fr 1fr; 
+        grid-column-gap: 7px; 
+        align-items: stretch; 
     }
-/*        .grid-container:nth-child(1) {
-            border-top: solid 2px teal;
-        }
-        .grid-container:nth-child(2) {
-            border-top: solid 2px teal;
-        }*/
         .grid-container:nth-last-child(2) {
             border-bottom: solid 2px teal;
         }
         .grid-item {
             border-left: solid 2px teal;
             border-right: solid 2px teal;
-            padding: 7px; /* Some inner space */
+            padding: 7px; 
             font-family: calibri;
         }
     .header {
@@ -49,8 +43,6 @@
 <body>
     <div style=" width:500px;">
         <div class="title">Chatem Up Pro</div><div style="float:right;">
-            <!--<button id="start2">Start recording</button>
-        <button id="stop" disabled>Stop recording</button>-->
             <img id="start" style="padding-top:7px;width:50px;" src="images/greenMic.png" /><img id="stop" style="cursor:pointer;padding-top: 7px; width: 50px; display: none;" src="images/redMic.png" />
         </div>
     </div>
@@ -60,8 +52,7 @@
             </div>
         </div>
         <script>
-            // new code
-            VOICE_MIN_DECIBELS = -65;
+            VOICE_MIN_DECIBELS = -60;
             DELAY_BETWEEN_DIALOGS = 1700;
             DIALOG_MAX_LENGTH = 60 * 1000;
             MEDIA_RECORDER = null;
@@ -98,7 +89,7 @@
                             audioChunks.push(event.data);
                         });
 
-                        //analisys:
+                        //analysis
                         const audioContext = new AudioContext();
                         const audioStreamSource = audioContext.createMediaStreamSource(stream);
                         const analyser = audioContext.createAnalyser();
@@ -107,27 +98,27 @@
                         const bufferLength = analyser.frequencyBinCount;
                         const domainData = new Uint8Array(bufferLength);
 
-                        //loop:
+                        //loop
                         let time = new Date();
                         let startTime,
                             lastDetectedTime = time.getTime();
                         let anySoundDetected = false;
                         const detectSound = () => {
 
-                            //recording stoped by user:
+                            //recording stoped by user
                             if (!IS_RECORDING)
                                 return;
 
                             time = new Date();
                             currentTime = time.getTime();
 
-                            //time out:
+                            //time out
                             if (currentTime > startTime + DIALOG_MAX_LENGTH) {
                                 MEDIA_RECORDER.stop();
                                 return;
                             }
 
-                            //a dialog detected:
+                            //dialog detected
                             if (anySoundDetected === true &&
                                 currentTime > lastDetectedTime + DELAY_BETWEEN_DIALOGS
                             ) {
@@ -135,7 +126,7 @@
                                 return;
                             }
 
-                            //check for detection:
+                            //check for detection
                             analyser.getByteFrequencyData(domainData);
                             for (let i = 0; i < bufferLength; i++)
                                 if (domainData[i] > 0) {
@@ -144,18 +135,18 @@
                                     lastDetectedTime = time.getTime();
                                 }
 
-                            //continue the loop:
+                            //continue the loop
                             window.requestAnimationFrame(detectSound);
                         };
                         window.requestAnimationFrame(detectSound);
 
-                        //stop event:
+                        //stop event
                         MEDIA_RECORDER.addEventListener('stop', () => {
-                            //stop all the tracks:
+                            //stop all the tracks
                             stream.getTracks().forEach(track => track.stop());
                             if (!anySoundDetected) return;
 
-                            //send to server:
+                            //send to server
                             const audioBlob = new Blob(audioChunks, {
                                 'type': 'audio/ogg; codecs=opus'
                             });
@@ -171,17 +162,11 @@
                                     document.getElementById('output').innerHTML += '<div class="grid-item">' + data[1] + '</div>';
                                 })
                                 .catch(error => console.error('Error:', error));
-
-
-                            //start recording again:
+                            //start recording again
                             record();
-
                         });
-
                     });
             }
-
-
         </script>
 </body>
-    </html>
+</html>

@@ -1,0 +1,3 @@
+C:\Users\Greg\Documents\GitHub\chatemup\obj\Debug\chatemup.njsproj.AssemblyReference.cache
+C:\Users\Greg\Documents\GitHub\chatemup\obj\Debug\chatemup.njsproj.CoreCompileInputs.cache
+C:\Users\Greg\Documents\GitHub\chatemup\bin\Microsoft.NodejsTools.WebRole.dll
